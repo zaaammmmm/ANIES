@@ -4,15 +4,39 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(document.documentElement.classList.contains('dark'));
-  const [pageTitle, setPageTitle] = useState('AnimeStream');
+  const [pageTitle, setPageTitle] = useState('ANIES');
   const [activePage, setActivePage] = useState('/');
+  const [debounceTimer, setDebounceTimer] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleSearch = (e) => {
     e.preventDefault();
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+      setDebounceTimer(null);
+    }
     if (searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+    }
+
+    if (value.trim()) {
+      const timer = setTimeout(() => {
+        navigate(`/search?q=${encodeURIComponent(value.trim())}`);
+      }, 300); // Shorter delay for header search
+      setDebounceTimer(timer);
+    } else {
+      // If empty, navigate to search page without query to show all results or reset
+      navigate('/search');
     }
   };
 
@@ -29,38 +53,38 @@ const Header = () => {
 
   useEffect(() => {
     const path = location.pathname;
-    let title = 'AnimeStream';
+    let title = 'ANIES';
 
     switch (path) {
       case '/':
       case '/dashboard':
-        title = 'Beranda - AnimeStream';
+        title = 'Beranda';
         break;
       case '/anime-list':
-        title = 'Daftar Anime - AnimeStream';
+        title = 'Daftar Anime';
         break;
       case '/schedule':
-        title = 'Jadwal Rilis - AnimeStream';
+        title = 'Jadwal Rilis';
         break;
       case '/genres':
-        title = 'Genre Anime - AnimeStream';
+        title = 'Genre Anime';
         break;
       case '/search':
-        title = 'Pencarian - AnimeStream';
+        title = 'Pencarian';
         break;
       case '/about':
-        title = 'Tentang Kami - AnimeStream';
+        title = 'Tentang Kami';
         break;
       case '/login':
-        title = 'Login - AnimeStream';
+        title = 'Login';
         break;
       default:
         if (path.startsWith('/anime/')) {
-          title = 'Detail Anime - AnimeStream';
+          title = 'Detail Anime';
         } else if (path.startsWith('/episodes/')) {
-          title = 'Daftar Episode - AnimeStream';
+          title = 'Daftar Episode';
         } else if (path.startsWith('/player/')) {
-          title = 'Player - AnimeStream';
+          title = 'Player';
         }
         break;
     }
@@ -68,6 +92,11 @@ const Header = () => {
     setPageTitle(title);
     setActivePage(path);
     document.title = title;
+
+    // Reset search query when navigating away from search page or on page refresh
+    if (path !== '/search') {
+      setSearchQuery('');
+    }
   }, [location.pathname]);
 
   return (
@@ -97,7 +126,7 @@ const Header = () => {
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleSearchInputChange}
               className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-primary-light dark:text-text-primary-dark focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-secondary-light dark:bg-secondary-dark h-full placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal transition-all"
               placeholder="Cari anime..."
             />

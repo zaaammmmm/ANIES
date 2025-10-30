@@ -13,6 +13,7 @@ const Search = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
+  const [debounceTimer, setDebounceTimer] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -23,6 +24,30 @@ const Search = () => {
       handleSearch(q, 1);
     }
   }, [location.search]);
+
+  useEffect(() => {
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+    }
+
+    if (query.trim()) {
+      const timer = setTimeout(() => {
+        setCurrentPage(1);
+        setResults([]);
+        handleSearch(query, 1);
+      }, 500);
+      setDebounceTimer(timer);
+    } else {
+      setResults([]);
+      setError(null);
+    }
+
+    return () => {
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
+    };
+  }, [query]);
 
   const handleSearch = async (searchQuery, page = 1) => {
     if (!searchQuery.trim()) return;
@@ -48,7 +73,12 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+      setDebounceTimer(null);
+    }
     setCurrentPage(1);
+    setResults([]);
     handleSearch(query, 1);
   };
 

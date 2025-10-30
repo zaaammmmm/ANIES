@@ -6,21 +6,41 @@ import Loader from './Loader';
 
 const Dashboard = () => {
   const [topAnime, setTopAnime] = useState([]);
+  const [schedules, setSchedules] = useState([]);
+  const [actionAnime, setActionAnime] = useState([]);
+  const [romanceAnime, setRomanceAnime] = useState([]);
+  const [comedyAnime, setComedyAnime] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchTopAnime = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getTopAnime(1, 10);
-        setTopAnime(data.data);
+        // Fetch top anime
+        const topData = await getTopAnime(1, 10);
+        setTopAnime(topData.data);
+
+        // Fetch today's schedules
+        const scheduleData = await getAnimeSchedules();
+        setSchedules(scheduleData.data.slice(0, 10));
+
+        // Fetch anime by genres
+        const [actionData, romanceData, comedyData] = await Promise.all([
+          getAnimeByGenre(1, 1, 10), // Action genre ID = 1
+          getAnimeByGenre(22, 1, 10), // Romance genre ID = 22
+          getAnimeByGenre(4, 1, 10), // Comedy genre ID = 4
+        ]);
+
+        setActionAnime(actionData.data);
+        setRomanceAnime(romanceData.data);
+        setComedyAnime(comedyData.data);
       } catch (error) {
-        console.error('Failed to fetch top anime:', error);
+        console.error('Failed to fetch data:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchTopAnime();
+    fetchData();
   }, []);
 
   if (loading) {
@@ -36,17 +56,18 @@ const Dashboard = () => {
       <div className="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div className="layout-container flex h-full grow flex-col">
           <div className="flex flex-1 justify-center py-5">
-            <div className="layout-content-container flex flex-col w-full max-w-6xl flex-1 px-4 md:px-10">
+            <div className="layout-content-container flex flex-col w-full max-w-7xl flex-1 px-4 md:px-10">
               <Header />
 
               {/* Main Content */}
               <main className="flex flex-col gap-12 px-4 md:px-10 py-5 mt-16 page-transition">
                 {/* Trending Anime */}
                 <section className="flex flex-col gap-6">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-between gap-4">
                     <h2 className="text-[#191022] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Anime Trending</h2>
+                    <a href='anime-list' className="text-[#191022] hover:text-blue-400 dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline">Lihat Selengkapnya</a>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6">
                     {topAnime.slice(0, 6).map((anime, index) => (
                       <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`} className={`relative group overflow-hidden rounded-lg cursor-pointer animate-fade-in`} style={{ animationDelay: `${index * 100}ms` }}>
                         <div className="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] transition-transform duration-300 group-hover:scale-105" style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("${anime.images.jpg.large_image_url}")` }}>
@@ -59,10 +80,11 @@ const Dashboard = () => {
 
                 {/* Latest Episodes */}
                 <section className="flex flex-col gap-6">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-between gap-4">
                     <h2 className="text-[#191022] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Episode Terbaru</h2>
+                    <a href='anime-list' className="text-[#191022] hover:text-blue-400 dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline">Lihat Selengkapnya</a>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                     {topAnime.slice(6, 10).map((anime, index) => (
                       <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`} className={`relative group overflow-hidden rounded-lg cursor-pointer animate-fade-in`} style={{ animationDelay: `${index * 100}ms` }}>
                         <div className="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] transition-transform duration-300 group-hover:scale-105" style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("${anime.images.jpg.large_image_url}")` }}>
@@ -72,6 +94,7 @@ const Dashboard = () => {
                     ))}
                   </div>
                 </section>
+
               </main>
             </div>
           </div>
