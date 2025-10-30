@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTopAnime } from '../services/jikanApi';
+import { getAnimeByGenre, getAnimeSchedules, getTopAnime } from '../services/jikanApi';
+import Footer from './Footer';
 import Header from './Header';
 import Loader from './Loader';
 
@@ -64,8 +65,8 @@ const Dashboard = () => {
                 {/* Trending Anime */}
                 <section className="flex flex-col gap-6">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-[#191022] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Anime Trending</h2>
-                    <a href='anime-list' className="text-[#191022] hover:text-blue-400 dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline">Lihat Selengkapnya</a>
+                    <h2 className="text-text-primary-light dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Anime Trending</h2>
+                    <a href='anime-list' className="text-text-primary-light dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline hover:text-primary">Lihat Selengkapnya</a>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6">
                     {topAnime.slice(0, 6).map((anime, index) => (
@@ -81,8 +82,8 @@ const Dashboard = () => {
                 {/* Latest Episodes */}
                 <section className="flex flex-col gap-6">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-[#191022] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Episode Terbaru</h2>
-                    <a href='anime-list' className="text-[#191022] hover:text-blue-400 dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline">Lihat Selengkapnya</a>
+                    <h2 className="text-text-primary-light dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Episode Terbaru</h2>
+                    <a href='anime-list' className="text-text-primary-light dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline hover:text-primary">Lihat Selengkapnya</a>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                     {topAnime.slice(6, 10).map((anime, index) => (
@@ -101,16 +102,7 @@ const Dashboard = () => {
         </div>
 
         {/* Footer */}
-        <footer className="bg-background-dark border-t border-white/10 mt-16">
-          <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-white/50 text-sm">© 2024 AnimeStream. All rights reserved.</p>
-            <div className="mt-4 flex justify-center space-x-6">
-              <Link className="text-white/50 hover:text-white" to="/about">Tentang Kami</Link>
-              <a className="text-white/50 hover:text-white" href="#">Kontak</a>
-              <a className="text-white/50 hover:text-white" href="#">Kebijakan Privasi</a>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );

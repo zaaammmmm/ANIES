@@ -1,6 +1,16 @@
-# TODO: Add Action, Romance, and Comedy Anime Sections to Dashboard
+# TODO: Implement Auto-Search Feature
 
-- [x] Add Action Anime section after Latest Episodes
-- [x] Add Romance Anime section after Action Anime
-- [x] Add Comedy Anime section after Romance Anime
-- [x] Verify all sections display correctly with 6 anime cards each (dev server running at http://localhost:5173/)
+## Tasks
+- [x] Modify SearchNew.jsx to add debounced auto-search on query input change
+- [x] Test the auto-search functionality in browser
+- [x] Ensure manual search button still works
+- [x] Verify no errors in console
+
+## Additional Tasks
+- [x] Update Dashboard.jsx to fetch 10 items for all sections (schedules, action, romance, comedy)
+- [x] Set default theme to light mode in tailwind.config.js
+- [x] Update Footer.jsx for theme support
+- [x] Update AnimeDetail.jsx text and theme colors
+- [x] Implement theme persistence using localStorage in Header.jsx
+- [x] Update Loader.jsx to support theme colors
+- [x] Apply saved theme before React rendering in main.jsx to prevent flash of wrong theme

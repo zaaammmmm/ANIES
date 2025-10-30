@@ -3,7 +3,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isDarkMode, setIsDarkMode] = useState(document.documentElement.classList.contains('dark'));
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Check localStorage first, then fallback to document class
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    return document.documentElement.classList.contains('dark');
+  });
   const [pageTitle, setPageTitle] = useState('ANIES');
   const [activePage, setActivePage] = useState('/');
   const [debounceTimer, setDebounceTimer] = useState(null);
@@ -45,13 +52,27 @@ const Header = () => {
     if (html.classList.contains('dark')) {
       html.classList.remove('dark');
       setIsDarkMode(false);
+      localStorage.setItem('theme', 'light');
     } else {
       html.classList.add('dark');
       setIsDarkMode(true);
+      localStorage.setItem('theme', 'dark');
     }
   };
 
   useEffect(() => {
+    // Apply saved theme on component mount
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        setIsDarkMode(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        setIsDarkMode(false);
+      }
+    }
+
     const path = location.pathname;
     let title = 'ANIES';
 

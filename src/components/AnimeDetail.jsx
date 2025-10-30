@@ -35,7 +35,7 @@ const AnimeDetail = () => {
   if (!anime) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-background-light dark:bg-background-dark">
-        <div className="text-text-primary-light dark:text-text-primary-dark">Anime not found</div>
+        <div className="text-text-primary-light dark:text-white">Anime not found</div>
       </div>
     );
   }
@@ -54,23 +54,23 @@ const AnimeDetail = () => {
               <div className="flex-grow pt-4">
                 <div className="flex flex-wrap justify-between gap-3">
                   <div className="flex flex-col gap-2">
-                    <p className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">{anime.title}</p>
-                    <p className="text-white/70 text-sm sm:text-base font-normal leading-normal">Rating: {anime.score}/10 | {anime.episodes} Episode | {anime.status}</p>
+                    <p className="text-text-secondary-light dark:text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">{anime.title}</p>
+                    <p className="text-text-secondary-light dark:text-white/70 text-sm sm:text-base font-normal leading-normal">Rating: {anime.score}/10 | {anime.episodes} Episode | {anime.status}</p>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {anime.genres.map((genre) => (
-                    <span key={genre.mal_id} className="text-xs font-medium text-white bg-white/10 rounded-full px-3 py-1">{genre.name}</span>
+                    <span key={genre.mal_id} className="text-xs font-medium text-text-primary-light dark:text-white bg-secondary-light dark:bg-white/10 rounded-full px-3 py-1">{genre.name}</span>
                   ))}
                 </div>
-                <p className="text-white/90 text-sm sm:text-base font-normal leading-normal pt-4 max-w-3xl">{anime.synopsis}</p>
+                <p className="text-text-secondary-light dark:text-white/90 text-sm sm:text-base font-normal leading-normal pt-4 max-w-3xl">{anime.synopsis}</p>
                 <div className="flex justify-stretch">
                   <div className="flex flex-1 gap-3 flex-wrap py-5 justify-start">
                     <Link to={`/player/${id}`} className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] gap-2">
                       <span className="material-symbols-outlined">play_arrow</span>
                       <span className="truncate">Tonton Episode 1</span>
                     </Link>
-                    <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-white/10 text-white text-base font-bold leading-normal tracking-[0.015em] gap-2">
+                    <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-secondary-light dark:bg-white/10 text-text-primary-light dark:text-white text-base font-bold leading-normal tracking-[0.015em] gap-2">
                       <span className="material-symbols-outlined">add</span>
                       <span className="truncate">Tambah ke Daftar</span>
                     </button>
@@ -80,13 +80,13 @@ const AnimeDetail = () => {
             </div>
 
             <div className="mt-10">
-              <div className="border-b border-white/10">
+              {/* <div className="border-b border-secondary-light dark:border-white/10">
                 <nav aria-label="Tabs" className="-mb-px flex space-x-8">
                   <Link to={`/episodes/${id}`} className="whitespace-nowrap border-b-2 border-primary px-1 py-4 text-sm font-bold text-primary">Episode</Link>
-                  <a className="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-white/70 hover:text-white hover:border-white/30" href="#">Detail</a>
-                  <a className="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-white/70 hover:text-white hover:border-white/30" href="#">Rekomendasi</a>
+                  <a className="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-text-secondary-light dark:text-white/70 hover:text-text-primary-light dark:hover:text-white hover:border-secondary-light dark:hover:border-white/30" href="#">Detail</a>
+                  <a className="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-text-secondary-light dark:text-white/70 hover:text-text-primary-light dark:hover:text-white hover:border-secondary-light dark:hover:border-white/30" href="#">Rekomendasi</a>
                 </nav>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
