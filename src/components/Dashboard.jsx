@@ -61,14 +61,14 @@ const Dashboard = () => {
               <Header />
 
               {/* Main Content */}
-              <main className="flex flex-col gap-12 px-4 md:px-10 py-5 mt-16 page-transition">
+              <main className="flex flex-col gap-8 md:gap-12 px-4 md:px-10 py-5 mt-16 page-transition">
                 {/* Trending Anime */}
                 <section className="flex flex-col gap-6">
                   <div className="flex items-center justify-between gap-4">
                     <h2 className="text-text-primary-light dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Anime Trending</h2>
                     <a href='anime-list' className="text-text-primary-light dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline hover:text-primary">Lihat Selengkapnya</a>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                     {topAnime.slice(0, 6).map((anime, index) => (
                       <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`} className={`relative group overflow-hidden rounded-lg cursor-pointer animate-fade-in`} style={{ animationDelay: `${index * 100}ms` }}>
                         <div className="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] transition-transform duration-300 group-hover:scale-105" style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("${anime.images.jpg.large_image_url}")` }}>
@@ -85,7 +85,7 @@ const Dashboard = () => {
                     <h2 className="text-text-primary-light dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Episode Terbaru</h2>
                     <a href='anime-list' className="text-text-primary-light dark:text-white text-[15px] text-underline leading-tight tracking-[-0.015em] underline hover:text-primary">Lihat Selengkapnya</a>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                     {topAnime.slice(6, 10).map((anime, index) => (
                       <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`} className={`relative group overflow-hidden rounded-lg cursor-pointer animate-fade-in`} style={{ animationDelay: `${index * 100}ms` }}>
                         <div className="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] transition-transform duration-300 group-hover:scale-105" style={{ backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("${anime.images.jpg.large_image_url}")` }}>

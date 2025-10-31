@@ -1,16 +1,11 @@
-# TODO: Implement Auto-Search Feature
+# TODO: Add Playlist Feature
 
 ## Tasks
-- [x] Modify SearchNew.jsx to add debounced auto-search on query input change
-- [x] Test the auto-search functionality in browser
-- [x] Ensure manual search button still works
-- [x] Verify no errors in console
-
-## Additional Tasks
-- [x] Update Dashboard.jsx to fetch 10 items for all sections (schedules, action, romance, comedy)
-- [x] Set default theme to light mode in tailwind.config.js
-- [x] Update Footer.jsx for theme support
-- [x] Update AnimeDetail.jsx text and theme colors
-- [x] Implement theme persistence using localStorage in Header.jsx
-- [x] Update Loader.jsx to support theme colors
-- [x] Apply saved theme before React rendering in main.jsx to prevent flash of wrong theme
+- [x] Create Playlist.jsx component with grid layout
+- [x] Implement localStorage functions for playlist management
+- [x] Update AnimeDetail.jsx to add/remove anime from playlist
+- [x] Add /playlist route to App.jsx
+- [x] Update Header.jsx navigation to include playlist link
+- [x] Update Footer.jsx to include playlist link
+- [x] Test playlist functionality across different pages
+- [x] Ensure playlist persists across browser sessions

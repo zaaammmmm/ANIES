@@ -7,6 +7,7 @@ import EpisodeList from './components/EpisodeList';
 import Genres from './components/Genres';
 import Login from './components/Login';
 import Player from './components/PlayerNew';
+import Playlist from './components/Playlist';
 import Schedule from './components/Schedule';
 import Search from './components/SearchNew';
 import './index.css';
@@ -21,6 +22,7 @@ function App() {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/genres" element={<Genres />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/playlist" element={<Playlist />} />
         <Route path="/anime/:id" element={<AnimeDetail />} />
         <Route path="/episodes/:id" element={<EpisodeList />} />
         <Route path="/player/:id" element={<Player />} />

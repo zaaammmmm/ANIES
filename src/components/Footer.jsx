@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="dark:bg-background-dark border-t border-secondary-light dark:border-white/10 mt-16">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto py-8 md:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <span className="material-symbols-outlined text-primary text-3xl">play_circle</span>
@@ -18,13 +18,13 @@ const Footer = () => {
                 <span className="material-symbols-outlined">facebook</span>
               </a>
               <a href="#" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors">
-                <span className="material-symbols-outlined">twitter</span>
+                <span className="material-symbols-outlined">share</span>
               </a>
               <a href="#" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors">
-                <span className="material-symbols-outlined">instagram</span>
+                <span className="material-symbols-outlined">photo_camera</span>
               </a>
               <a href="#" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors">
-                <span className="material-symbols-outlined">youtube</span>
+                <span className="material-symbols-outlined">smart_display</span>
               </a>
             </div>
           </div>
@@ -32,9 +32,10 @@ const Footer = () => {
             <h3 className="text-text-primary-light dark:text-white font-semibold mb-4">Navigasi</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Beranda</Link></li>
-              <li><Link to="/anime-list" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Daftar Anime</Link></li>
-              <li><Link to="/genres" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Genre</Link></li>
-              <li><Link to="/schedule" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Jadwal</Link></li>
+            <li><Link to="/anime-list" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Daftar Anime</Link></li>
+            <li><Link to="/schedule" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Jadwal</Link></li>
+            <li><Link to="/genres" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Genre</Link></li>
+            <li><Link to="/playlist" className="text-text-secondary-light dark:text-white/50 hover:text-text-primary-light dark:hover:text-white transition-colors text-sm">Playlist</Link></li>
             </ul>
           </div>
           <div>
