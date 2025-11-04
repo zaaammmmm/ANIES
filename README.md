@@ -16,11 +16,11 @@ Aplikasi ini bertujuan untuk memberikan pengalaman pengguna yang cepat dan respo
 
 Proyek ini dibangun menggunakan kombinasi teknologi front-end modern:
 
-* **Framework/Library:** JavaScript/TypeScript (Berdasarkan `tsconfig.json` dan dominasi kode JS).
-* **Build Tool:** [Vite](https://vitejs.dev/) (Terlihat dari `vite.config.ts`)
-* **Styling:** [Tailwind CSS](https://tailwindcss.com/) (Terlihat dari `tailwind.config.js` dan `postcss.config.js`)
-* **Data Source:** **[Mohon sebutkan API yang digunakan, misalnya: Jikan API, MyAnimeList API, atau API kustom.]**
-* **Deployment:** Netlify (Berdasarkan tautan demo yang ditemukan).
+* **Framework/Library:** JavaScript/TypeScript 
+* **Build Tool:** [Vite](https://vitejs.dev/) 
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/) )
+* **Data Source:** Jikan API**
+* **Deployment:** Netlify 
 
 ## ✨ Fitur Utama
 
